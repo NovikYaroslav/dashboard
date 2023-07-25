@@ -1,0 +1,14 @@
+.configure {
+  display: flex;
+  padding: 30px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@import url('./style/configure-title.css');
+@import url('./style/configure_container.css');
+@import url('./style/configure-gridcell.css');
+@import url('./style/configure-gridcell-bar.css');
+@import url('./style/configure-gridcell-title.css');
+@import url('./style/configure-gridcell-checkbox.css');

@@ -1,0 +1,6 @@
+.todo_item {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border-bottom: 3px solid red;
+}

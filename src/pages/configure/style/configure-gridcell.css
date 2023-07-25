@@ -1,0 +1,4 @@
+.configure_gridcell {
+  display: flex;
+  flex-direction: column;
+}

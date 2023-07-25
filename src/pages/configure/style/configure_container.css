@@ -1,0 +1,10 @@
+.configure_container {
+  display: grid;
+  grid-template-columns: 465px 1fr 1fr;
+  column-gap: 50px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  margin-top: 30px;
+  width: 100%;
+  min-height: 500px;
+}
