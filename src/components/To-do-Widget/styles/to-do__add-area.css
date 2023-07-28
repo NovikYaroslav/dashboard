@@ -1,0 +1,10 @@
+.to-do__add-area {
+  resize: 'none';
+  width: 90%;
+  height: 25px;
+  border: none;
+  border-bottom: 3px solid #757575;
+  font-size: 20px;
+  font-weight: bold;
+  color: #757575;
+}

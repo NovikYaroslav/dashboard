@@ -42,47 +42,62 @@ export default function ToDoWidget() {
 
   return (
     <div className='todo-widget'>
-      <div className='todo_inprogress'>
-        {inProgressItems.length > 0 ? <h3>In progress</h3> : null}
-        {inProgressItems.map((item) => (
-          <div className='todo_item' key={item.task}>
-            <input
-              type='checkbox'
-              checked={item.status}
-              onChange={() => handleDoneCheck(item)}
-              className='todo_checkbox'></input>
-            <p className='todo-discription'>{item.task}</p>
-            <button onClick={() => handleTaskDelete(item)}>Delete</button>
-          </div>
-        ))}
-      </div>
-      <div className='todo_finished'>
-        {finishedItems.length > 0 ? <h3>Finished</h3> : null}
-        {finishedItems.map((item) => (
-          <div className='todo_item' key={item.task}>
-            <input
-              type='checkbox'
-              checked={item.status}
-              onChange={() => handleUnDoneCheck(item)}
-              className='todo_checkbox'></input>
-            <p className='todo-discription'>{item.task}</p>
-            <button onClick={() => handleTaskDelete(item)}>Delete</button>
-          </div>
-        ))}
-      </div>
+      {inProgressItems.length > 0 ? (
+        <div className='todo_inprogress'>
+          {' '}
+          <h3 className='todo__title'>In progress:</h3>
+          {inProgressItems.map((item) => (
+            <div className='todo_item' key={item.task}>
+              <div className='todo_item-task'>
+                <input
+                  type='checkbox'
+                  checked={item.status}
+                  onChange={() => handleDoneCheck(item)}
+                  className='to-do__checkbox'></input>
+                <p className='to-do__discription'>{item.task}</p>
+              </div>
+              <button className='to-do__delete' onClick={() => handleTaskDelete(item)}></button>
+            </div>
+          ))}{' '}
+        </div>
+      ) : null}
+
+      {finishedItems.length > 0 ? (
+        <div className='todo_finished'>
+          <h3 className='todo__title'>Finished:</h3>
+          {finishedItems.map((item) => (
+            <div className='todo_item' key={item.task}>
+              <div className='todo_item-task'>
+                <input
+                  type='checkbox'
+                  checked={item.status}
+                  onChange={() => handleUnDoneCheck(item)}
+                  className='to-do__checkbox'></input>
+                <p className='to-do__discription to-do__discription_finished'>{item.task}</p>
+              </div>
+              <button className='to-do__delete' onClick={() => handleTaskDelete(item)}></button>
+            </div>
+          ))}
+        </div>
+      ) : null}
       <div className='todo_add-bar'>
-        <h3>Add task</h3>
-        <form onSubmit={handleFormSubmit}>
-          <textarea
+        {/* <h3 className='todo__title'>Add task</h3> */}
+        <form className='to-do__form' onSubmit={handleFormSubmit}>
+          <input
+            placeholder='Add your task'
             type='text'
             value={newItemText}
             onChange={(evt) => setNewItemText(evt.target.value)}
-            className='todo_checkbox'></textarea>
-          <button type='submit'>Add</button>
+            className='to-do__add-area'></input>
+          <button className='to-do__add' type='submit'>
+            Add
+          </button>
         </form>
       </div>
       {inProgressItems.length > 0 || finishedItems.length > 0 ? (
-        <button onClick={handleTasksRemove}>Remove all tasks</button>
+        <button className='to-do__delete-all' onClick={handleTasksRemove}>
+          Remove all tasks
+        </button>
       ) : null}
     </div>
   );

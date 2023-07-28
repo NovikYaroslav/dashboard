@@ -1,6 +1,6 @@
 .configure_container {
   display: grid;
-  grid-template-columns: 465px 620px 1fr;
+  grid-template-columns: 465px 620px 520px;
   column-gap: 50px;
   grid-column-start: 2;
   grid-column-end: 3;

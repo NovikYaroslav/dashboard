@@ -1,0 +1,12 @@
+.to-do__delete-all {
+  font-size: 28px;
+  color: #757575;
+  margin: 10px 0 10px 0;
+  border: none;
+  background-color: transparent;
+}
+
+.to-do__delete-all:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
