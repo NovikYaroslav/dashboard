@@ -16,19 +16,16 @@ export default function ToDoWidget() {
   };
 
   function handleDoneCheck(finishedItem) {
-    console.log(finishedItem);
     setInProgressItems(inProgressItems.filter((item) => item !== finishedItem));
     setFinishedItems([...finishedItems, { status: true, task: finishedItem.task }]);
   }
 
   function handleUnDoneCheck(itemToDo) {
-    console.log(itemToDo);
     setFinishedItems(finishedItems.filter((item) => item !== itemToDo));
     setInProgressItems([...inProgressItems, { status: false, task: itemToDo.task }]);
   }
 
   function handleTaskDelete(itemToDelete) {
-    console.log(itemToDelete);
     if (itemToDelete.status) {
       setFinishedItems(finishedItems.filter((item) => item !== itemToDelete));
     }
@@ -81,7 +78,6 @@ export default function ToDoWidget() {
         </div>
       ) : null}
       <div className='todo_add-bar'>
-        {/* <h3 className='todo__title'>Add task</h3> */}
         <form className='to-do__form' onSubmit={handleFormSubmit}>
           <input
             placeholder='Add your task'
