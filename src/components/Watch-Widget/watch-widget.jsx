@@ -1,5 +1,5 @@
 import './watch-widget.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { WatchTabs } from '../../utils/data';
 import { alarmHours, alarmMinutes } from '../../utils/calculation-functions';
 
@@ -11,8 +11,15 @@ export default function WatchWidget() {
   const [currentTime, setCurrentTime] = useState(time);
   const [activeTab, setActiveTab] = useState('Watch');
   const [alertTime, setAlarmTime] = useState({ hour: 0, minutes: 0, added: false });
+  let alarmTime = `${addLeadingZero(Number(alertTime.hour))}:${addLeadingZero(
+    Number(alertTime.minutes),
+  )}`;
 
-  console.log(alarmHours());
+  useEffect(() => {
+    if (alertTime.added && alarmTime === currentTime) {
+      alert('Time to wake up Neo!');
+    }
+  }, [alertTime, currentTime, alarmTime]);
 
   function updateTime() {
     timeData = new Date();
@@ -46,9 +53,7 @@ export default function WatchWidget() {
         <div className='watch-widget__alarm'>
           {alertTime.added ? (
             <div className='watch-widget__bar_time-picker'>
-              <div className='watch-widget__current-alarm'>{`${addLeadingZero(
-                Number(alertTime.hour),
-              )}:${addLeadingZero(Number(alertTime.minutes))}`}</div>
+              <div className='watch-widget__current-alarm'>{alarmTime}</div>
               <button className='watch-widget__time-picker-btn' onClick={handleAlarmRemove}>
                 Remove
               </button>
