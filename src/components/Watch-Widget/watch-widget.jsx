@@ -10,7 +10,8 @@ export default function WatchWidget() {
   let time = `${hours}:${addLeadingZero(minutes)}`;
   const [currentTime, setCurrentTime] = useState(time);
   const [activeTab, setActiveTab] = useState('Watch');
-  const [alertTime, setAlarmTime] = useState({ hour: 0, minutes: 0, added: false });
+  const [alertTime, setAlertTime] = useState({ hour: 0, minutes: 0, added: false });
+  const [timerTime, setTimerTime] = useState({ hour: 0, minutes: 0, added: false });
   let alarmTime = `${addLeadingZero(Number(alertTime.hour))}:${addLeadingZero(
     Number(alertTime.minutes),
   )}`;
@@ -37,12 +38,23 @@ export default function WatchWidget() {
 
   function handleAlarmAdd(evt) {
     evt.preventDefault();
-    setAlarmTime({ ...alertTime, added: true });
+    setAlertTime({ ...alertTime, added: true });
   }
 
   function handleAlarmRemove() {
-    setAlarmTime({ hour: 0, minutes: 0, added: false });
+    setAlertTime({ hour: 0, minutes: 0, added: false });
   }
+
+  function handleTimerTime(evt) {
+    evt.preventDefault();
+    setTimerTime({ ...timerTime, added: true });
+  }
+
+  function handleTimerRemove() {
+    setTimerTime({ hour: 0, minutes: 0, added: false });
+  }
+
+  function updateTimer() {}
 
   function pickActiveTab(tab) {
     if (tab === 'Watch') {
@@ -63,7 +75,7 @@ export default function WatchWidget() {
               <select
                 className='watch-widget__time-picker-hours'
                 value={alertTime.hour}
-                onChange={(e) => setAlarmTime({ ...alertTime, hour: e.target.value })}>
+                onChange={(e) => setAlertTime({ ...alertTime, hour: e.target.value })}>
                 {alarmHours().map((hour) => (
                   <option className='watch-widget__time-picker-hour' key={hour}>
                     {addLeadingZero(hour)}
@@ -74,7 +86,7 @@ export default function WatchWidget() {
               <select
                 className='watch-widget__time-picker-hours'
                 value={alertTime.minutes}
-                onChange={(e) => setAlarmTime({ ...alertTime, minutes: e.target.value })}>
+                onChange={(e) => setAlertTime({ ...alertTime, minutes: e.target.value })}>
                 {alarmMinutes().map((minute) => (
                   <option key={minute}>{addLeadingZero(minute)}</option>
                 ))}
@@ -88,7 +100,43 @@ export default function WatchWidget() {
       );
     }
     if (tab === 'Timer') {
-      return <div className='watch-widget__watch'>Timer</div>;
+      return (
+        <div className='watch-widget__alarm'>
+          {timerTime.added ? (
+            <div className='watch-widget__bar_time-picker'>
+              <div className='watch-widget__current-alarm'>{alarmTime}</div>
+              <button className='watch-widget__time-picker-btn' onClick={handleTimerRemove}>
+                Remove
+              </button>
+            </div>
+          ) : (
+            <div className='watch-widget__bar_time-picker'>
+              <select
+                className='watch-widget__time-picker-hours'
+                value={timerTime.hour}
+                onChange={(e) => setTimerTime({ ...timerTime, hour: e.target.value })}>
+                {alarmHours().map((hour) => (
+                  <option className='watch-widget__time-picker-hour' key={hour}>
+                    {addLeadingZero(hour)}
+                  </option>
+                ))}
+              </select>
+              <div style={{ margin: '0 5px', color: '#757575' }}>:</div>
+              <select
+                className='watch-widget__time-picker-hours'
+                value={timerTime.minutes}
+                onChange={(e) => setTimerTime({ ...timerTime, minutes: e.target.value })}>
+                {alarmMinutes().map((minute) => (
+                  <option key={minute}>{addLeadingZero(minute)}</option>
+                ))}
+              </select>
+              <button className='watch-widget__time-picker-btn' onClick={handleTimerTime}>
+                Add
+              </button>
+            </div>
+          )}
+        </div>
+      );
     }
     if (tab === 'StopWatch') {
       return <div className='watch-widget__watch'>StopWatch</div>;
