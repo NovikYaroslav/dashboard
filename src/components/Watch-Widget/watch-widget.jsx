@@ -1,7 +1,7 @@
 import './watch-widget.css';
 import { useEffect, useState } from 'react';
 import { WatchTabs } from '../../utils/data';
-import { alarmHours, alarmMinutes } from '../../utils/calculation-functions';
+import { alarmHours, alarmMinutes, alarmSeconds } from '../../utils/calculation-functions';
 
 export default function WatchWidget() {
   let timeData = new Date();
@@ -12,15 +12,55 @@ export default function WatchWidget() {
   const [activeTab, setActiveTab] = useState('Watch');
   const [alertTime, setAlertTime] = useState({ hour: 0, minutes: 0, added: false });
   const [timerTime, setTimerTime] = useState({ hour: 0, minutes: 0, added: false });
+  const [stopWatchTime, setStopWatchTime] = useState({
+    hour: 0,
+    minutes: 0,
+    seconds: 0,
+    added: false,
+  });
   let alarmTime = `${addLeadingZero(Number(alertTime.hour))}:${addLeadingZero(
     Number(alertTime.minutes),
   )}`;
+  let timersTime = `${addLeadingZero(Number(timerTime.hour))}:${addLeadingZero(
+    Number(timerTime.minutes),
+  )}`;
+  let stopWatchsTime = `${addLeadingZero(Number(stopWatchTime.hour))}:${addLeadingZero(
+    Number(stopWatchTime.minutes),
+  )}:${addLeadingZero(Number(stopWatchTime.seconds))}`;
 
+  console.log(stopWatchTime);
+
+  // Будильник
   useEffect(() => {
     if (alertTime.added && alarmTime === currentTime) {
-      alert('Time to wake up Neo!');
+      alert('Time to wake up, Neo!');
     }
   }, [alertTime, currentTime, alarmTime]);
+
+  // Таймер
+  useEffect(() => {
+    let timerInterval;
+    if (timerTime.added) {
+      timerInterval = setInterval(updateTimer, 60000);
+    }
+    return () => clearInterval(timerInterval);
+  }, [timerTime]);
+
+  useEffect(() => {
+    if (timerTime.added && timerTime.hour === 0 && timerTime.minutes === 0) {
+      setTimerTime({ hour: 0, minutes: 0, added: false });
+      alert('Time is over, Neo!');
+    }
+  }, [timerTime]);
+
+  // Секундомер
+  useEffect(() => {
+    let stopWatchInterval;
+    if (stopWatchTime.added) {
+      stopWatchInterval = setInterval(updateStopWatchTime, 1000);
+    }
+    return () => clearInterval(stopWatchInterval);
+  }, [stopWatchTime]);
 
   function updateTime() {
     timeData = new Date();
@@ -28,6 +68,29 @@ export default function WatchWidget() {
     minutes = timeData.getMinutes();
     time = `${hours}:${addLeadingZero(minutes)}`;
     setCurrentTime(time);
+  }
+
+  function updateTimer() {
+    if (timerTime.minutes === 0) {
+      setTimerTime((prevTime) => ({ ...prevTime, hour: prevTime.hour - 1, minutes: 59 }));
+    } else {
+      setTimerTime((prevTime) => ({ ...prevTime, minutes: prevTime.minutes - 1 }));
+    }
+  }
+
+  function updateStopWatchTime() {
+    console.log('StopWatch');
+    if (stopWatchTime.minutes > 59) {
+      console.log('StopWatch Hours');
+      setStopWatchTime((prevTime) => ({ ...prevTime, hour: prevTime.hour + 1, minutes: 0 }));
+    }
+    if (stopWatchTime.seconds > 59) {
+      console.log('StopWatch Hours');
+      setStopWatchTime((prevTime) => ({ ...prevTime, minutes: prevTime.minutes + 1, seconds: 0 }));
+    } else {
+      console.log('StopWatch Minutes');
+      setStopWatchTime((prevTime) => ({ ...prevTime, seconds: prevTime.seconds + 1 }));
+    }
   }
 
   setInterval(updateTime, 60000);
@@ -54,7 +117,26 @@ export default function WatchWidget() {
     setTimerTime({ hour: 0, minutes: 0, added: false });
   }
 
-  function updateTimer() {}
+  function handleStopWatchAdd(evt) {
+    console.log('Add');
+    evt.preventDefault();
+    setStopWatchTime({ ...stopWatchTime, added: true });
+  }
+
+  function handleStopWatchStop(evt) {
+    evt.preventDefault();
+    setStopWatchTime({ ...stopWatchTime, added: false });
+  }
+
+  function handleStopWatchResume(evt) {
+    evt.preventDefault();
+    setStopWatchTime({ ...stopWatchTime, added: true });
+  }
+
+  function handleStopWatchReset(evt) {
+    evt.preventDefault();
+    setStopWatchTime({ hour: 0, minutes: 0, seconds: 0, added: true });
+  }
 
   function pickActiveTab(tab) {
     if (tab === 'Watch') {
@@ -104,7 +186,7 @@ export default function WatchWidget() {
         <div className='watch-widget__alarm'>
           {timerTime.added ? (
             <div className='watch-widget__bar_time-picker'>
-              <div className='watch-widget__current-alarm'>{alarmTime}</div>
+              <div className='watch-widget__current-alarm'>{timersTime}</div>
               <button className='watch-widget__time-picker-btn' onClick={handleTimerRemove}>
                 Remove
               </button>
@@ -139,7 +221,30 @@ export default function WatchWidget() {
       );
     }
     if (tab === 'StopWatch') {
-      return <div className='watch-widget__watch'>StopWatch</div>;
+      return (
+        <div className='watch-widget__alarm'>
+          {!stopWatchTime.added && stopWatchTime.seconds === 0 && stopWatchTime.minutes === 0 ? (
+            <button className='watch-widget__time-picker-btn' onClick={handleStopWatchAdd}>
+              Start
+            </button>
+          ) : (
+            <>
+              <div className='watch-widget__current-alarm'>{stopWatchsTime}</div>
+              <button className='watch-widget__time-picker-btn' onClick={handleStopWatchStop}>
+                Stop
+              </button>
+              {!stopWatchTime.added && stopWatchTime.seconds > 0 ? (
+                <button className='watch-widget__time-picker-btn' onClick={handleStopWatchResume}>
+                  Resume
+                </button>
+              ) : null}
+              <button className='watch-widget__time-picker-btn' onClick={handleStopWatchReset}>
+                Reset
+              </button>
+            </>
+          )}
+        </div>
+      );
     }
   }
 

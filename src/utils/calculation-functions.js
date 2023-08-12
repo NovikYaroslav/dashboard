@@ -13,3 +13,11 @@ export function alarmMinutes() {
   }
   return minutes;
 }
+
+export function alarmSeconds() {
+  let seconds = [];
+  for (let i = 0; i < 60; i++) {
+    seconds.push(i);
+  }
+  return seconds;
+}
