@@ -1,0 +1,5 @@
+.watch-widget__stopwatch-bar {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}

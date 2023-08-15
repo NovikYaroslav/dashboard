@@ -1,9 +1,15 @@
+@font-face {
+  font-family: 'Bebas';
+  src: url('./vendor/fonts/BebasNeue-Regular.ttf');
+}
+
 body {
   margin: 0 auto;
   max-width: 100vh;
   min-width: 100vw;
-  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+  font-family: -apple-system, BlinkMacSystemFont, 'Bebas', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  letter-spacing: 1px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

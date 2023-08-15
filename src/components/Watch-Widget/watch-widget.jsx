@@ -1,7 +1,7 @@
 import './watch-widget.css';
 import { useEffect, useState } from 'react';
 import { WatchTabs } from '../../utils/data';
-import { alarmHours, alarmMinutes, alarmSeconds } from '../../utils/calculation-functions';
+import { alarmHours, alarmMinutes } from '../../utils/calculation-functions';
 
 export default function WatchWidget() {
   let timeData = new Date();
@@ -28,7 +28,7 @@ export default function WatchWidget() {
     Number(stopWatchTime.minutes),
   )}:${addLeadingZero(Number(stopWatchTime.seconds))}`;
 
-  console.log(stopWatchTime);
+  console.log(timerTime.hour);
 
   // Будильник
   useEffect(() => {
@@ -133,6 +133,11 @@ export default function WatchWidget() {
     setStopWatchTime({ ...stopWatchTime, added: true });
   }
 
+  function handleStopWatchDrop(evt) {
+    evt.preventDefault();
+    setStopWatchTime({ hour: 0, minutes: 0, seconds: 0, added: false });
+  }
+
   function handleStopWatchReset(evt) {
     evt.preventDefault();
     setStopWatchTime({ hour: 0, minutes: 0, seconds: 0, added: true });
@@ -212,9 +217,11 @@ export default function WatchWidget() {
                   <option key={minute}>{addLeadingZero(minute)}</option>
                 ))}
               </select>
-              <button className='watch-widget__time-picker-btn' onClick={handleTimerTime}>
-                Add
-              </button>
+              {timerTime.hour == 0 && timerTime.minutes == 0 ? null : (
+                <button className='watch-widget__time-picker-btn' onClick={handleTimerTime}>
+                  Add
+                </button>
+              )}
             </div>
           )}
         </div>
@@ -230,17 +237,27 @@ export default function WatchWidget() {
           ) : (
             <>
               <div className='watch-widget__current-alarm'>{stopWatchsTime}</div>
-              <button className='watch-widget__time-picker-btn' onClick={handleStopWatchStop}>
-                Stop
-              </button>
-              {!stopWatchTime.added && stopWatchTime.seconds > 0 ? (
-                <button className='watch-widget__time-picker-btn' onClick={handleStopWatchResume}>
-                  Resume
+              <div className='watch-widget__stopwatch-bar'>
+                {!stopWatchTime.added && stopWatchTime.seconds > 0 ? (
+                  <>
+                    <button className='watch-widget__time-picker-btn' onClick={handleStopWatchDrop}>
+                      Drop
+                    </button>
+                    <button
+                      className='watch-widget__time-picker-btn'
+                      onClick={handleStopWatchResume}>
+                      Resume
+                    </button>
+                  </>
+                ) : (
+                  <button className='watch-widget__time-picker-btn' onClick={handleStopWatchStop}>
+                    Stop
+                  </button>
+                )}
+                <button className='watch-widget__time-picker-btn' onClick={handleStopWatchReset}>
+                  Reset
                 </button>
-              ) : null}
-              <button className='watch-widget__time-picker-btn' onClick={handleStopWatchReset}>
-                Reset
-              </button>
+              </div>
             </>
           )}
         </div>
