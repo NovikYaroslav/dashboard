@@ -43,8 +43,8 @@ export default function ToDoWidget() {
         <div className='todo_inprogress'>
           {' '}
           <h3 className='todo__title'>In progress:</h3>
-          {inProgressItems.map((item) => (
-            <div className='todo_item' key={item.task}>
+          {inProgressItems.map((item, i) => (
+            <div className='todo_item' key={item.task + i}>
               <div className='todo_item-task'>
                 <input
                   type='checkbox'

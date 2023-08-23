@@ -1,12 +1,13 @@
 import CalendarWidget from '../../components/Calendar-Widget/Calendar-Widget';
 import ToDoWidget from '../../components/To-do-Widget/To-do-widget';
 import WatchWidget from '../../components/Watch-Widget/watch-widget';
+import CalculatorWidget from '../../components/Calculator-Widget.jsx/calculator-widget';
 import './configure.css';
 
 export default function Configure() {
   return (
     <div className='configure'>
-      <h1 className='configure_title'>Select boards you wish to use</h1>
+      <h1 className='configure_title'>Select widgets you wish to use</h1>
       <div className='configure_container'>
         <div className='configure_gridcell'>
           <div className='configure_gridcell-bar'>
@@ -28,6 +29,13 @@ export default function Configure() {
             <input type='checkbox' className='configure_gridcell-checkbox'></input>
           </div>
           <WatchWidget />
+        </div>
+        <div className='configure_gridcell'>
+          <div className='configure_gridcell-bar'>
+            <h2 className='configure_gridcell-title'>Calculator</h2>
+            <input type='checkbox' className='configure_gridcell-checkbox'></input>
+          </div>
+          <CalculatorWidget />
         </div>
       </div>
     </div>
