@@ -21,3 +21,33 @@ export function calculatorNumbers() {
   }
   return numbers;
 }
+
+export function calculate(calculationValues) {
+  switch (calculationValues.operator) {
+    case '÷':
+      return Number(calculationValues.left) / Number(calculationValues.right);
+    case '×':
+      return Number(calculationValues.left) * Number(calculationValues.right);
+    case '-':
+      return Number(calculationValues.left) - Number(calculationValues.right);
+    default:
+      return Number(calculationValues.left) + Number(calculationValues.right);
+  }
+}
+
+export function makeValueInversion(value) {
+  if (!value) {
+    return '';
+  }
+  return value > 0 ? -Math.abs(value) : Math.abs(value);
+}
+
+export function makeValueFractional(value) {
+  if (!value) {
+    return '';
+  } else if (value.includes('.')) {
+    return value;
+  } else {
+    return value + '.';
+  }
+}

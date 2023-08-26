@@ -1,1 +1,1 @@
-export const MAX_CALC_VALUE_LENGTH = 9;
+export const MAX_VALUE_LENGTH = 9;

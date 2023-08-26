@@ -1,95 +1,69 @@
 import { useState } from 'react';
 import './calculator-widget.css';
 import { calculatorNumbersButtonsValues, calculatorOperatorsButtonsValues } from '../../utils/data';
-import { MAX_CALC_VALUE_LENGTH } from '../../utils/const';
+import {
+  calculate,
+  makeValueInversion,
+  makeValueFractional,
+} from '../../utils/calculation-functions';
+import { MAX_VALUE_LENGTH } from '../../utils/const';
 
 export default function CalculatorWidget() {
   const [calculationValues, setCalculationValues] = useState({
-    left: null,
-    right: null,
-    operator: null,
-    result: null,
+    left: '',
+    right: '',
+    operator: '',
+    result: undefined,
   });
 
-  function handleNumbersClick(number) {
+  function handleNumbersAreaClick(value) {
+    const targetValue = calculationValues.operator ? 'right' : 'left';
+
     if (calculationValues.result) {
       return;
     }
-    if (
-      String(calculationValues.left).length === MAX_CALC_VALUE_LENGTH &&
-      !calculationValues.operator
-    ) {
+
+    if (calculationValues[targetValue].length === MAX_VALUE_LENGTH) {
       return;
     }
-    if (String(calculationValues.right).length === MAX_CALC_VALUE_LENGTH) {
-      return;
-    }
-    if (!calculationValues.operator) {
-      if (number === '-/+') {
-        if (calculationValues.left > 0) {
-          setCalculationValues({ ...calculationValues, left: -Math.abs(calculationValues.left) });
-        } else {
-          setCalculationValues({ ...calculationValues, left: Math.abs(calculationValues.left) });
-        }
-      } else if (number === ',') {
-        setCalculationValues({
-          ...calculationValues,
-          left: String(calculationValues.left) + '.',
-        });
-      } else if (!calculationValues.left) {
-        setCalculationValues({ ...calculationValues, left: number });
-      } else {
-        setCalculationValues({ ...calculationValues, left: calculationValues.left + number });
-      }
+
+    if (value === '-/+' || value === ',') {
+      modificateValue(targetValue, value);
     } else {
-      if (number === '-/+') {
-        if (calculationValues.right > 0) {
-          setCalculationValues({ ...calculationValues, right: -Math.abs(calculationValues.right) });
-        } else {
-          setCalculationValues({ ...calculationValues, right: Math.abs(calculationValues.right) });
-        }
-      } else if (number === ',') {
-        setCalculationValues({
-          ...calculationValues,
-          right: String(calculationValues.right) + '.',
-        });
-      } else if (!calculationValues.right) {
-        setCalculationValues({ ...calculationValues, right: number });
-      } else {
-        setCalculationValues({ ...calculationValues, right: calculationValues.right + number });
-      }
+      setCalculationValues({
+        ...calculationValues,
+        [targetValue]: calculationValues[targetValue] + value,
+      });
+    }
+  }
+
+  function modificateValue(value, modificator) {
+    if (modificator === '-/+') {
+      const reversedValue = makeValueInversion(calculationValues[value]);
+      setCalculationValues({ ...calculationValues, [value]: reversedValue });
+    } else {
+      const fractionalValue = makeValueFractional(calculationValues[value]);
+      setCalculationValues({ ...calculationValues, [value]: fractionalValue });
     }
   }
 
   function handleOperatorClick(operator) {
-    setCalculationValues({ ...calculationValues, operator: operator });
-  }
-
-  function calculate() {
-    if (calculationValues.operator === '÷') {
-      return Number(calculationValues.left) / Number(calculationValues.right);
-    } else if (calculationValues.operator === '×') {
-      return Number(calculationValues.left) * Number(calculationValues.right);
-    } else if (calculationValues.operator === '-') {
-      return Number(calculationValues.left) - Number(calculationValues.right);
-    } else {
-      return Number(calculationValues.left) + Number(calculationValues.right);
-    }
+    if (calculationValues.left) setCalculationValues({ ...calculationValues, operator: operator });
   }
 
   function handleEquelClick() {
-    setCalculationValues({ ...calculationValues, result: calculate() });
+    setCalculationValues({ ...calculationValues, result: calculate(calculationValues) });
   }
 
   function handleDelClick() {
     if (calculationValues.result) {
-      setCalculationValues({ ...calculationValues, result: null });
+      setCalculationValues({ ...calculationValues, result: undefined });
     } else if (calculationValues.right) {
-      setCalculationValues({ ...calculationValues, right: null });
+      setCalculationValues({ ...calculationValues, right: '' });
     } else if (calculationValues.operator) {
-      setCalculationValues({ ...calculationValues, operator: null });
+      setCalculationValues({ ...calculationValues, operator: '' });
     } else if (calculationValues.left) {
-      setCalculationValues({ ...calculationValues, left: null });
+      setCalculationValues({ ...calculationValues, left: '' });
     }
   }
 
@@ -111,7 +85,7 @@ export default function CalculatorWidget() {
             <button
               className='calculator-widget__button'
               key={el}
-              onClick={() => handleNumbersClick(el)}>
+              onClick={() => handleNumbersAreaClick(el)}>
               {el}
             </button>
           ))}
