@@ -1,10 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './to-do_widget.css';
 
 export default function ToDoWidget() {
   const [inProgressItems, setInProgressItems] = useState([]);
   const [finishedItems, setFinishedItems] = useState([]);
   const [newItemText, setNewItemText] = useState('');
+  const savedTasks = JSON.parse(localStorage.getItem('Tasks'));
+
+  console.log(savedTasks.inProgressTasks);
+  console.log(savedTasks.finishedTasks);
+
+  useEffect(() => {
+    if (savedTasks) {
+      setInProgressItems(savedTasks.inProgressTasks);
+      setFinishedItems(savedTasks.finishedTasks);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      'Tasks',
+      JSON.stringify({ inProgressTasks: inProgressItems, finishedTasks: finishedItems }),
+    );
+  }, [inProgressItems, finishedItems]);
 
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
