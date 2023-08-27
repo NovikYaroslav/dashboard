@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './calculator-widget.css';
 import { calculatorNumbersButtonsValues, calculatorOperatorsButtonsValues } from '../../utils/data';
 import {
@@ -15,6 +15,21 @@ export default function CalculatorWidget() {
     operator: '',
     result: undefined,
   });
+  const savedCalcValues = JSON.parse(localStorage.getItem('Calculator'));
+
+  console.log(savedCalcValues);
+
+  useEffect(() => {
+    return () => {
+      localStorage.setItem('Calculator', JSON.stringify(calculationValues));
+    };
+  }, [calculationValues]);
+
+  useEffect(() => {
+    if (savedCalcValues) {
+      setCalculationValues(savedCalcValues);
+    }
+  }, []);
 
   function handleNumbersAreaClick(value) {
     const targetValue = calculationValues.operator ? 'right' : 'left';
