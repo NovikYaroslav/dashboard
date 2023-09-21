@@ -17,8 +17,6 @@ export default function CalculatorWidget() {
   });
   const savedCalcValues = JSON.parse(localStorage.getItem('Calculator'));
 
-  console.log(savedCalcValues);
-
   useEffect(() => {
     return () => {
       localStorage.setItem('Calculator', JSON.stringify(calculationValues));

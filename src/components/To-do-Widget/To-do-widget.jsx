@@ -7,9 +7,6 @@ export default function ToDoWidget() {
   const [newItemText, setNewItemText] = useState('');
   const savedTasks = JSON.parse(localStorage.getItem('Tasks'));
 
-  console.log(savedTasks.inProgressTasks);
-  console.log(savedTasks.finishedTasks);
-
   useEffect(() => {
     if (savedTasks) {
       setInProgressItems(savedTasks.inProgressTasks);

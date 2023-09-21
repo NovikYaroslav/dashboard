@@ -1,0 +1,15 @@
+.configure_button {
+  margin: 0;
+  font-size: 58px;
+  font-weight: bold;
+  padding: 10px;
+  background-color: white;
+  color: #757575;
+  border: none;
+  box-shadow: 0 0 0 1px #757575, 0 0 0 4px grey, 0 0 0 1px grey inset;
+}
+
+.configure_button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}

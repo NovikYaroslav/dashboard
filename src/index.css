@@ -4,9 +4,9 @@
 }
 
 body {
-  margin: 0 auto;
-  max-width: 100vh;
-  min-width: 100vw;
+  margin: auto;
+  height: 100vh;
+  max-width: 100vw;
   font-family: -apple-system, BlinkMacSystemFont, 'Bebas', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
     'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   letter-spacing: 1px;
