@@ -11,5 +11,6 @@
 @import url('./styles/calculator-widget__symbols-area.css');
 @import url('./styles/calculator-widget__numbers-area.css');
 @import url('./styles/calculator-widget__operators-area.css');
+@import url('./styles/calculator-widget__calculation-result.css');
 @import url('./styles/calculator-widget__button.css');
 @import url('./styles/calculator-widget__button-operators.css');

@@ -1,0 +1,15 @@
+.dashboard__pin {
+  width: 100%;
+  height: 15px;
+  margin-bottom: 5px;
+  display: hidden;
+  background-image: url('../../../images/icons8-перетаскивание-67.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0;
+}
+
+.dashboard__pin:hover {
+  opacity: 0.8;
+}

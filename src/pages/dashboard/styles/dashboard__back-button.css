@@ -1,0 +1,16 @@
+.dashboard__back-button {
+  width: 100px;
+  padding: 0;
+  position: absolute;
+
+  bottom: 0px;
+  right: 50%;
+  background-color: transparent;
+  border: 1px solid #757575;
+  color: #757575;
+  z-index: 3;
+}
+
+.dashboard__back-button:hover {
+  cursor: pointer;
+}

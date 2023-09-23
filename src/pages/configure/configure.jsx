@@ -9,10 +9,23 @@ import './configure.css';
 export default function Configure() {
   const navigate = useNavigate();
   const [configuration, setConfiguration] = useState([]);
+  const savedConfiguration = JSON.parse(localStorage.getItem('configuration'));
+
+  useEffect(() => {
+    // Load configuration from local storage when the component mounts
+    if (savedConfiguration) {
+      setConfiguration(savedConfiguration);
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('configuration', JSON.stringify(configuration));
   }, [configuration]);
+
+  // Function to check if a widget is already in the configuration
+  function isWidgetChecked(widgetName) {
+    return configuration.includes(widgetName);
+  }
 
   function handleWidgetCheck(evt) {
     const widget = evt.target.name;
@@ -45,7 +58,8 @@ export default function Configure() {
               type='checkbox'
               name='Calendar'
               className='configure_gridcell-checkbox'
-              onChange={(evt) => handleWidgetCheck(evt)}></input>
+              onChange={(evt) => handleWidgetCheck(evt)}
+              checked={isWidgetChecked('Calendar')}></input>
           </div>
           <CalendarWidget />
         </div>
@@ -56,7 +70,8 @@ export default function Configure() {
               type='checkbox'
               name='ToDo'
               className='configure_gridcell-checkbox'
-              onChange={(evt) => handleWidgetCheck(evt)}></input>
+              onChange={(evt) => handleWidgetCheck(evt)}
+              checked={isWidgetChecked('ToDo')}></input>
           </div>
           <ToDoWidget />
         </div>
@@ -67,7 +82,8 @@ export default function Configure() {
               type='checkbox'
               name='Watch'
               className='configure_gridcell-checkbox'
-              onChange={(evt) => handleWidgetCheck(evt)}></input>
+              onChange={(evt) => handleWidgetCheck(evt)}
+              checked={isWidgetChecked('Watch')}></input>
           </div>
           <WatchWidget />
         </div>
@@ -78,7 +94,8 @@ export default function Configure() {
               type='checkbox'
               name='Calculator'
               className='configure_gridcell-checkbox'
-              onChange={(evt) => handleWidgetCheck(evt)}></input>
+              onChange={(evt) => handleWidgetCheck(evt)}
+              checked={isWidgetChecked('Calculator')}></input>
           </div>
           <CalculatorWidget />
         </div>

@@ -4,8 +4,12 @@ import CalculatorWidget from '../../components/Calculator-Widget.jsx/calculator-
 import CalendarWidget from '../../components/Calendar-Widget/Calendar-Widget';
 import ToDoWidget from '../../components/To-do-Widget/To-do-widget';
 import Draggable from 'react-draggable';
+import drag from '../../images/icons8-перетаскивание-67.png';
+import './dashboard.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const config = JSON.parse(localStorage.getItem('configuration'));
   const widgetsSet = {
     Watch: <WatchWidget />,
@@ -14,24 +18,31 @@ export default function Dashboard() {
     ToDo: <ToDoWidget />,
   };
 
+  function handleBackButtonClick() {
+    navigate('/configure');
+  }
+
   return (
-    <>
+    <div className='dashboard'>
       {config.map((widget) => (
-        <Draggable bounds='body'>
+        <Draggable bounds='body' handle='.dashboard__pin'>
           <div
             style={{
-              maxWidth: 'fit-content',
-              maxHeight: 'fit-content',
+              width: 'fit-content',
+              height: 'fit-content',
+              margin: '0 5px 5px 5px',
               display: 'flex',
               flexDirection: 'column',
             }}>
-            <h1 className='handle' style={{ width: '100%', margin: '0' }}>
-              --
-            </h1>
+            <div className='dashboard__pin' />
+
             {widgetsSet[widget]}
           </div>
         </Draggable>
       ))}
-    </>
+      <button className='dashboard__back-button' onClick={handleBackButtonClick}>
+        Back to configuration
+      </button>
+    </div>
   );
 }

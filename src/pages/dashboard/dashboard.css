@@ -1,0 +1,7 @@
+.dashboard {
+  display: flex;
+  gap: 20px;
+}
+
+@import url('./styles/dashboard__pin.css');
+@import url('./styles/dashboard__back-button.css');
