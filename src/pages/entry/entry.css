@@ -1,4 +1,4 @@
-.main {
+.entry {
   margin: 0;
   height: 100vh;
   width: 100vw;
@@ -11,7 +11,7 @@
   box-sizing: border-box;
 }
 
-@import url(./style/main-welcome.css);
-@import url(./style/main-button.css);
-@import url(./style/main-title.css);
-@import url(./style/main-text.css);
+@import url(./style/entry__welcome.css);
+@import url(./style/entry__button.css);
+@import url(./style/entry__title.css);
+@import url(./style/entry__text.css);

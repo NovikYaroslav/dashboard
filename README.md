@@ -1,4 +1,5 @@
 # Simple Dashboard
+
 # v. 1.0.0
 
 Location: https://dashboard-novikyaroslav.vercel.app
@@ -10,7 +11,7 @@ Frontend:
 The site allows you to choose widgets, which you need, bring them to separate browser tab, and arrange it as you wish.
 The site consists of 6 main pages:
 
-1. Welcome page (Page with greeting) *in progress.
+1. Welcome page (Page with greeting) \*in progress.
 2. Configure page (Page on which you may choose neccecary widgets)
 3. Dasboard page (Page with full DnD, on which you may configure position of choosen widgets)
 
@@ -25,8 +26,10 @@ JAVASCRIPT/REACT/REDUX
 5. React-calenda
 
 ### Development plan:
+
 1. Add popups with discription of functionality to Welcome page and Dasboard page.
 2. Add at least weather widget, player widget.
-3. Add backend part for ability to use on different devices. 
+3. Add backend part for ability to use on different devices.
 4. Add more widgets.
 5. According to to projects sizes, rewrite project with TypeScript.
+6. Add dark theme.

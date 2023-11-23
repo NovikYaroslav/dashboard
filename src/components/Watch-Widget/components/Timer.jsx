@@ -12,14 +12,14 @@ export default function Timer({
   return (
     <div className='watch-widget__alarm'>
       {timerTime.added ? (
-        <div className='watch-widget__bar_time-picker'>
+        <div className='watch-widget__bar-time-picker'>
           <div className='watch-widget__current-alarm'>{timersTime}</div>
           <button className='watch-widget__time-picker-btn' onClick={onTimerRemove}>
             Remove
           </button>
         </div>
       ) : (
-        <div className='watch-widget__bar_time-picker'>
+        <div className='watch-widget__bar-time-picker'>
           <select
             className='watch-widget__time-picker-hours'
             value={timerTime.hour}

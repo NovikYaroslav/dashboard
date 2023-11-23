@@ -1,12 +1,10 @@
-// import { Draggable } from 'drag-react';
-import WatchWidget from '../../components/Watch-Widget/watch-widget';
-import CalculatorWidget from '../../components/Calculator-Widget.jsx/calculator-widget';
-import CalendarWidget from '../../components/Calendar-Widget/Calendar-Widget';
-import ToDoWidget from '../../components/To-do-Widget/To-do-widget';
-import Draggable from 'react-draggable';
-import drag from '../../images/icons8-перетаскивание-67.png';
-import './dashboard.css';
 import { useNavigate } from 'react-router-dom';
+import Draggable from 'react-draggable';
+import WatchWidget from '../../components/Watch-widget/Watch-widget';
+import CalculatorWidget from '../../components/Calculator-widget/Calculator-widget';
+import CalendarWidget from '../../components/Calendar-widget/Calendar-widget';
+import ToDoWidget from '../../components/To-do-widget/To-do-widget';
+import './dashboard.css';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -23,7 +21,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className='dashboard'>
+    <main className='dashboard'>
       {config.map((widget) => (
         <Draggable bounds='body' handle='.dashboard__pin'>
           <div
@@ -35,7 +33,6 @@ export default function Dashboard() {
               flexDirection: 'column',
             }}>
             <div className='dashboard__pin' />
-
             {widgetsSet[widget]}
           </div>
         </Draggable>
@@ -43,6 +40,6 @@ export default function Dashboard() {
       <button className='dashboard__back-button' onClick={handleBackButtonClick}>
         Back to configuration
       </button>
-    </div>
+    </main>
   );
 }

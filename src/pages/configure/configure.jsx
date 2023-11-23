@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CalendarWidget from '../../components/Calendar-Widget/Calendar-Widget';
-import ToDoWidget from '../../components/To-do-Widget/To-do-widget';
-import WatchWidget from '../../components/Watch-Widget/watch-widget';
-import CalculatorWidget from '../../components/Calculator-Widget.jsx/calculator-widget';
+import CalendarWidget from '../../components/Calendar-widget/Calendar-widget';
+import ToDoWidget from '../../components/To-do-widget/To-do-widget';
+import WatchWidget from '../../components/Watch-widget/Watch-widget';
+import CalculatorWidget from '../../components/Calculator-widget/Calculator-widget';
 import './configure.css';
 
 export default function Configure() {
@@ -12,7 +12,6 @@ export default function Configure() {
   const savedConfiguration = JSON.parse(localStorage.getItem('configuration'));
 
   useEffect(() => {
-    // Load configuration from local storage when the component mounts
     if (savedConfiguration) {
       setConfiguration(savedConfiguration);
     }
@@ -22,7 +21,6 @@ export default function Configure() {
     localStorage.setItem('configuration', JSON.stringify(configuration));
   }, [configuration]);
 
-  // Function to check if a widget is already in the configuration
   function isWidgetChecked(widgetName) {
     return configuration.includes(widgetName);
   }
@@ -42,18 +40,19 @@ export default function Configure() {
   }
 
   return (
-    <div className='configure'>
+    <main className='configure'>
       {Object.keys(configuration).length === 0 ? (
-        <h1 className='configure_title'>Select widgets you wish to use</h1>
+        <h2 className='configure_title'>Select widgets you wish to use</h2>
       ) : (
         <button className='configure_button' onClick={handleDoneClick}>
           Done
         </button>
       )}
+      {/* have to be refactored to ul/li*/}
       <div className='configure_container'>
         <div className='configure_gridcell'>
           <div className='configure_gridcell-bar'>
-            <h2 className='configure_gridcell-title'>Calendar</h2>
+            <h3 className='configure_gridcell-title'>Calendar</h3>
             <input
               type='checkbox'
               name='Calendar'
@@ -65,7 +64,7 @@ export default function Configure() {
         </div>
         <div className='configure_gridcell'>
           <div className='configure_gridcell-bar'>
-            <h2 className='configure_gridcell-title'>ToDo list</h2>
+            <h3 className='configure_gridcell-title'>ToDo list</h3>
             <input
               type='checkbox'
               name='ToDo'
@@ -77,7 +76,7 @@ export default function Configure() {
         </div>
         <div className='configure_gridcell'>
           <div className='configure_gridcell-bar'>
-            <h2 className='configure_gridcell-title'>Watch</h2>
+            <h3 className='configure_gridcell-title'>Watch</h3>
             <input
               type='checkbox'
               name='Watch'
@@ -89,7 +88,7 @@ export default function Configure() {
         </div>
         <div className='configure_gridcell'>
           <div className='configure_gridcell-bar'>
-            <h2 className='configure_gridcell-title'>Calculator</h2>
+            <h3 className='configure_gridcell-title'>Calculator</h3>
             <input
               type='checkbox'
               name='Calculator'
@@ -100,30 +99,6 @@ export default function Configure() {
           <CalculatorWidget />
         </div>
       </div>
-    </div>
+    </main>
   );
 }
-
-{
-  /* <ul>
-<li>Calendar</li> */
-}
-{
-  /* https://www.section.io/engineering-education/build-react-calendar-library/#installation */
-}
-{
-  /* <li>Weather</li> */
-}
-{
-  /* https://codesandbox.io/s/react-weather-widget-co08m?file=/src/hooks/useFetch.js */
-}
-{
-  /* https://rapidapi.com/blog/access-global-weather-data-with-these-weather-apis/ */
-}
-{
-  /* <li>Notes</li>
-<li>Task bar</li>
-<li>Todo checker</li>
-<li>Audio Player</li> */
-}
-// </ul>

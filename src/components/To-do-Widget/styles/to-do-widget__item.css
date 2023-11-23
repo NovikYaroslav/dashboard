@@ -1,4 +1,4 @@
-.todo_item {
+.to-do-widget__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,6 +7,6 @@
   padding-bottom: 5px;
 }
 
-.todo_item:last-of-type {
+.to-do-widget__item:last-of-type {
   margin-bottom: 25px;
 }

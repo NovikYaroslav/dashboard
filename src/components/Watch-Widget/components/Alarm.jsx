@@ -12,14 +12,14 @@ export default function Alarm({
   return (
     <div className='watch-widget__alarm'>
       {alertTime.added ? (
-        <div className='watch-widget__bar_time-picker'>
+        <div className='watch-widget__bar-time-picker'>
           <div className='watch-widget__current-alarm'>{alarmTime}</div>
           <button className='watch-widget__time-picker-btn' onClick={onAlarmRemove}>
             Remove
           </button>
         </div>
       ) : (
-        <div className='watch-widget__bar_time-picker'>
+        <div className='watch-widget__bar-time-picker'>
           <select
             className='watch-widget__time-picker-hours'
             value={alertTime.hour}

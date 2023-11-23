@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './to-do_widget.css';
+import './to-do-widget.css';
 
 export default function ToDoWidget() {
   const [inProgressItems, setInProgressItems] = useState([]);
@@ -53,60 +53,66 @@ export default function ToDoWidget() {
   }
 
   return (
-    <div className='todo-widget'>
+    <div className='to-do-widget'>
       {inProgressItems.length > 0 ? (
-        <div className='todo_inprogress'>
+        <div className='to-do-widget_inprogress'>
           {' '}
-          <h3 className='todo__title'>In progress:</h3>
+          <h3 className='to-do-widget__title'>In progress:</h3>
           {inProgressItems.map((item, i) => (
-            <div className='todo_item' key={item.task + i}>
-              <div className='todo_item-task'>
+            <div className='to-do-widget__item' key={item.task + i}>
+              <div className='to-do-widget__item-task'>
                 <input
                   type='checkbox'
                   checked={item.status}
                   onChange={() => handleDoneCheck(item)}
-                  className='to-do__checkbox'></input>
-                <p className='to-do__discription'>{item.task}</p>
+                  className='to-do-widget__checkbox'></input>
+                <p className='to-do-widget__discription'>{item.task}</p>
               </div>
-              <button className='to-do__delete' onClick={() => handleTaskDelete(item)}></button>
+              <button
+                className='to-do-widget__delete'
+                onClick={() => handleTaskDelete(item)}></button>
             </div>
           ))}{' '}
         </div>
       ) : null}
 
       {finishedItems.length > 0 ? (
-        <div className='todo_finished'>
-          <h3 className='todo__title'>Finished:</h3>
+        <div className='to-do-widget_finished'>
+          <h3 className='to-do-widget__title'>Finished:</h3>
           {finishedItems.map((item) => (
-            <div className='todo_item' key={item.task}>
-              <div className='todo_item-task'>
+            <div className='to-do-widget__item' key={item.task}>
+              <div className='to-do-widget__item-task'>
                 <input
                   type='checkbox'
                   checked={item.status}
                   onChange={() => handleUnDoneCheck(item)}
-                  className='to-do__checkbox'></input>
-                <p className='to-do__discription to-do__discription_finished'>{item.task}</p>
+                  className='to-do-widget__checkbox'></input>
+                <p className='to-do-widget__discription to-do-widget__discription_finished'>
+                  {item.task}
+                </p>
               </div>
-              <button className='to-do__delete' onClick={() => handleTaskDelete(item)}></button>
+              <button
+                className='to-do-widget__delete'
+                onClick={() => handleTaskDelete(item)}></button>
             </div>
           ))}
         </div>
       ) : null}
-      <div className='todo_add-bar'>
-        <form className='to-do__form' onSubmit={handleFormSubmit}>
+      <div className='to-do-widget_add-bar'>
+        <form className='to-do-widget__form' onSubmit={handleFormSubmit}>
           <input
             placeholder='Add your task'
             type='text'
             value={newItemText}
             onChange={(evt) => setNewItemText(evt.target.value)}
-            className='to-do__add-area'></input>
-          <button className='to-do__add' type='submit'>
+            className='to-do-widget__add-area'></input>
+          <button className='to-do-widget__add' type='submit'>
             Add
           </button>
         </form>
       </div>
       {inProgressItems.length > 0 || finishedItems.length > 0 ? (
-        <button className='to-do__delete-all' onClick={handleTasksRemove}>
+        <button className='to-do-widget__delete-all' onClick={handleTasksRemove}>
           Remove all tasks
         </button>
       ) : null}

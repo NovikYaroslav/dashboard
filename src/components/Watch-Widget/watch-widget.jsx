@@ -197,7 +197,7 @@ export default function WatchWidget() {
 
   return (
     <div className='watch-widget'>
-      <div className='watch-widget_bar'>
+      <div className='watch-widget__bar'>
         {watchTabs.map((tab) => (
           <button
             className={`watch-widget__btn ${activeTab === tab ? 'watch-widget__btn_active' : ''}`}

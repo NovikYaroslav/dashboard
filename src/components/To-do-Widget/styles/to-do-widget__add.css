@@ -1,4 +1,4 @@
-.to-do__add {
+.to-do-widget__add {
   margin-left: 5px;
   font-size: 24px;
   font-weight: bold;
@@ -7,7 +7,7 @@
   background-color: transparent;
 }
 
-.to-do__add:hover {
+.to-do-widget__add:hover {
   cursor: pointer;
   opacity: 0.7;
 }
