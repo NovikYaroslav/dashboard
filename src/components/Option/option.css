@@ -1,0 +1,8 @@
+.option {
+  display: flex;
+  flex-direction: column;
+}
+
+@import url('./styles/option__bar.css');
+@import url('./styles/option__title.css');
+@import url('./styles/option__checkbox.css');
