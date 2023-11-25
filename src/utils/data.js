@@ -14,3 +14,4 @@ export const calculatorNumbersButtonsValues = [
   ',',
 ];
 export const calculatorOperatorsButtonsValues = ['÷', '×', '-', '+'];
+export const availibleWidgets = ['Calendar', 'ToDo', 'Watch', 'Calculator'];

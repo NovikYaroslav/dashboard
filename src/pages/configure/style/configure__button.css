@@ -1,4 +1,4 @@
-.configure_button {
+.configure__button {
   margin: 0;
   font-size: 58px;
   font-weight: bold;
@@ -9,7 +9,7 @@
   box-shadow: 0 0 0 1px #757575, 0 0 0 4px grey, 0 0 0 1px grey inset;
 }
 
-.configure_button:hover {
+.configure__button:hover {
   cursor: pointer;
   opacity: 0.8;
 }

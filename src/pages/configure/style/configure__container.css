@@ -1,4 +1,4 @@
-.configure_container {
+.configure__container {
   display: grid;
   grid-template-columns: 465px 620px 520px;
   column-gap: 50px;

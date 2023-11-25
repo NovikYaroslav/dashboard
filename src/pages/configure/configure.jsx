@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CalendarWidget from '../../components/Calendar-widget/Calendar-widget';
-import ToDoWidget from '../../components/To-do-widget/To-do-widget';
-import WatchWidget from '../../components/Watch-widget/Watch-widget';
-import CalculatorWidget from '../../components/Calculator-widget/Calculator-widget';
+import Option from '../../components/Option/Option';
+import { availibleWidgets } from '../../utils/data';
 import './configure.css';
 
 export default function Configure() {
@@ -42,63 +40,22 @@ export default function Configure() {
   return (
     <main className='configure'>
       {Object.keys(configuration).length === 0 ? (
-        <h2 className='configure_title'>Select widgets you wish to use</h2>
+        <h2 className='configure__title'>Select widgets you wish to use</h2>
       ) : (
-        <button className='configure_button' onClick={handleDoneClick}>
+        <button className='configure__button' onClick={handleDoneClick}>
           Done
         </button>
       )}
-      {/* have to be refactored to ul/li*/}
-      <div className='configure_container'>
-        <div className='configure_gridcell'>
-          <div className='configure_gridcell-bar'>
-            <h3 className='configure_gridcell-title'>Calendar</h3>
-            <input
-              type='checkbox'
-              name='Calendar'
-              className='configure_gridcell-checkbox'
-              onChange={(evt) => handleWidgetCheck(evt)}
-              checked={isWidgetChecked('Calendar')}></input>
-          </div>
-          <CalendarWidget />
-        </div>
-        <div className='configure_gridcell'>
-          <div className='configure_gridcell-bar'>
-            <h3 className='configure_gridcell-title'>ToDo list</h3>
-            <input
-              type='checkbox'
-              name='ToDo'
-              className='configure_gridcell-checkbox'
-              onChange={(evt) => handleWidgetCheck(evt)}
-              checked={isWidgetChecked('ToDo')}></input>
-          </div>
-          <ToDoWidget />
-        </div>
-        <div className='configure_gridcell'>
-          <div className='configure_gridcell-bar'>
-            <h3 className='configure_gridcell-title'>Watch</h3>
-            <input
-              type='checkbox'
-              name='Watch'
-              className='configure_gridcell-checkbox'
-              onChange={(evt) => handleWidgetCheck(evt)}
-              checked={isWidgetChecked('Watch')}></input>
-          </div>
-          <WatchWidget />
-        </div>
-        <div className='configure_gridcell'>
-          <div className='configure_gridcell-bar'>
-            <h3 className='configure_gridcell-title'>Calculator</h3>
-            <input
-              type='checkbox'
-              name='Calculator'
-              className='configure_gridcell-checkbox'
-              onChange={(evt) => handleWidgetCheck(evt)}
-              checked={isWidgetChecked('Calculator')}></input>
-          </div>
-          <CalculatorWidget />
-        </div>
-      </div>
+      <ul className='configure__container'>
+        {availibleWidgets.map((widget) => (
+          <Option
+            widget={widget}
+            handleWidgetCheck={handleWidgetCheck}
+            isWidgetChecked={isWidgetChecked}
+            key={widget}
+          />
+        ))}
+      </ul>
     </main>
   );
 }
