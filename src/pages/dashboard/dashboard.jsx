@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Draggable from 'react-draggable';
-import WatchWidget from '../../components/Watch-widget';
+import WatchWidget from '../../components/Watch-widget/Watch-widget';
 import CalculatorWidget from '../../components/Calculator-widget/Calculator-widget';
 import CalendarWidget from '../../components/Calendar-widget/Calendar-widget';
 import ToDoWidget from '../../components/To-do-widget/To-do-widget';
