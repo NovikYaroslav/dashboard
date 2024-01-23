@@ -5,7 +5,6 @@ import CalculatorWidget from '../../components/Calculator-widget/Calculator-widg
 import CalendarWidget from '../../components/Calendar-widget/Calendar-widget';
 import ToDoWidget from '../../components/To-do-widget/To-do-widget';
 import './dashboard.css';
-//versel fix
 
 export default function Dashboard() {
   const navigate = useNavigate();
