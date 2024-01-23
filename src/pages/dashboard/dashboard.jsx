@@ -31,13 +31,17 @@ export default function Dashboard() {
               margin: '0 5px 5px 5px',
               display: 'flex',
               flexDirection: 'column',
-            }}>
+            }}
+          >
             <div className='dashboard__pin' />
             {widgetsSet[widget]}
           </div>
         </Draggable>
       ))}
-      <button className='dashboard__back-button' onClick={handleBackButtonClick}>
+      <button
+        className='dashboard__back-button'
+        onClick={handleBackButtonClick}
+      >
         Back to configuration
       </button>
     </main>
