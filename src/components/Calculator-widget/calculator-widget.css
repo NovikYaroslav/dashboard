@@ -1,0 +1,16 @@
+.calculator-widget {
+  display: flex;
+  flex-direction: column;
+  width: 460px;
+  min-height: 460px;
+  box-shadow: 0 0 0 1px #757575, 0 0 0 4px grey, 0 0 0 1px grey inset;
+}
+
+@import url('./styles/calculator-widget__calculation-area.css');
+@import url('./styles/calculator-widget__calculation-line.css');
+@import url('./styles/calculator-widget__symbols-area.css');
+@import url('./styles/calculator-widget__numbers-area.css');
+@import url('./styles/calculator-widget__operators-area.css');
+@import url('./styles/calculator-widget__calculation-result.css');
+@import url('./styles/calculator-widget__button.css');
+@import url('./styles/calculator-widget__button-operators.css');

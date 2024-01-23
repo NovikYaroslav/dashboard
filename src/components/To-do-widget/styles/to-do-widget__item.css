@@ -1,0 +1,12 @@
+.to-do-widget__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid #757575;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+.to-do-widget__item:last-of-type {
+  margin-bottom: 25px;
+}

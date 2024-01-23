@@ -1,0 +1,21 @@
+.watch-widget {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 500px;
+  min-height: 222px;
+  box-shadow: 0 0 0 1px #757575, 0 0 0 4px grey, 0 0 0 1px grey inset;
+  padding: 2px 10px;
+}
+
+@import url('./styles/watch-widget__bar.css');
+@import url('./styles/watch-widget__btn.css');
+@import url('./styles/watch-widget__btn_active.css');
+@import url('./styles/watch-widget__watch.css');
+@import url('./styles/watch-widget__alarm.css');
+@import url('./styles/watch-widget__bar-time-picker.css');
+@import url('./styles/watch-widget__current-alarm.css');
+@import url('./styles/watch-widget__time-picker-hours.css');
+@import url('./styles/watch-widget__time-picker-hour.css');
+@import url('./styles/watch-widget__time-picker-btn.css');
+@import url('./styles/watch-widget__stopwatch-bar.css');

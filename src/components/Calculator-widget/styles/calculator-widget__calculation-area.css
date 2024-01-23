@@ -1,0 +1,12 @@
+.calculator-widget__calculation-area {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: end;
+  border: 1px solid #757575;
+  border-bottom: 3px solid #757575;
+  width: 100%;
+  min-height: 110px;
+  color: #757575;
+  font-size: 54px;
+}

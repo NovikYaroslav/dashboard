@@ -1,0 +1,5 @@
+.to-do-widget__item-task {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}

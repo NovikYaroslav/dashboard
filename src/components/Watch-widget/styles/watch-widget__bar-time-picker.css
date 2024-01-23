@@ -1,0 +1,7 @@
+.watch-widget__bar-time-picker {
+  padding: 10px 0 10px 0;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  font-size: 94px;
+}

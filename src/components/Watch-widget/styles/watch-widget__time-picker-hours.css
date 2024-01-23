@@ -1,0 +1,6 @@
+.watch-widget__time-picker-hours {
+  border: none;
+  padding: 5px;
+  color: #757575;
+  box-shadow: 0 0 0 1px #757575, 0 0 0 4px grey, 0 0 0 1px grey inset;
+}

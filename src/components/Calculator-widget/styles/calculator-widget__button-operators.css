@@ -1,0 +1,8 @@
+.calculator-widget__button-operators {
+  font-size: 48px;
+  color: #757575;
+  background-color: transparent;
+  border: 1px solid #757575;
+  width: 115px;
+  height: 20%;
+}
