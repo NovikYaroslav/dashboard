@@ -26,7 +26,8 @@ export default function Option({ widget, handleWidgetCheck, isWidgetChecked }) {
             name={widget}
             className='option__checkbox'
             onChange={(evt) => handleWidgetCheck(evt)}
-            checked={isWidgetChecked(widget)}></input>
+            checked={isWidgetChecked(widget)}
+          ></input>
         </div>
         {widgets[widget]}
       </li>
