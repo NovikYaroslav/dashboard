@@ -1,7 +1,0 @@
-.calendar-widget {
-  display: flex;
-  flex-direction: column;
-  width: 460px;
-}
-
-@import url('./styles/calendar.css');
